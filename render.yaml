@@ -1,0 +1,19 @@
+services:
+  - type: worker
+    name: ishtop-telegram-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_ID
+        sync: false
+      - key: CHANNEL_ID
+        sync: false
+      - key: DB_PATH
+        value: /var/data/ishtop.db
+    disk:
+      name: ishtop-data
+      mountPath: /var/data
+      sizeGB: 1
